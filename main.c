@@ -7,7 +7,7 @@
 int checkForRightInput(char *input) {
     assert(input != NULL);
     // TODO: add padding to this
-    assert(strlen(input) == 4);
+    assert(strlen(input) == 8);
     for (int i = 0; input[i] != '\0'; i++) {
         assert(isdigit(input[i]));
     }
@@ -26,26 +26,18 @@ char byteToHex(unsigned char input) {
 void readByte(unsigned char input) {
     unsigned char highNibble = input >> 4;
     unsigned char lowNibble = input & 0x0F;
-    
     printf("Hex: %c%c\n", byteToHex(highNibble), byteToHex(lowNibble));
-
-    printf("Hight: %d\n", highNibble);
-    printf("Low: %d\n", lowNibble);
 }
 
 int main(int argc, char *argv[]) {
-    // char *input = argv[1];
-    char *input = "1111";
+    char *input = argv[1];
     if (checkForRightInput(input) != 0) {
         printf("Wrong input\n");
         return EXIT_FAILURE;
     }
 
-    unsigned char inputInt = (unsigned char) strtol(input, NULL, 0);
-
-
-    readByte(inputInt);
-
+    unsigned char inputAsByte = (unsigned char) strtol(input, NULL, 2);
+    readByte(inputAsByte);
 
     return EXIT_SUCCESS;
 }
